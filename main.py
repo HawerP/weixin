@@ -56,9 +56,12 @@ def get_weather(region):
     weather = response["now"]["text"]
     # 当前温度
     temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
+    #最高温度和最低温度
+    temp_max = response["now"]["tempMax"]
+    temp_min = response["now"]["tempMin"]
     # 风向
     wind_dir = response["now"]["windDir"]
-    return weather, temp, wind_dir
+    return weather, temp, temp_Max, temp_Mix, wind_dir
  
  
 def get_birthday(birthday, year, today):
@@ -229,5 +232,5 @@ if __name__ == "__main__":
         note_ch, note_en = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+        send_message(user, accessToken, region, weather, temp, temp_Max, temp_Min, wind_dir, note_ch, note_en)
     os.system("pause")
